@@ -11,4 +11,4 @@ RUN chmod a+x ~/build.sh && \
   apt install -y git default-jdk maven && \
   git clone https://github.com/boxfuse/boxfuse-sample-java-war-hello
 
-CMD ["~/build.sh"]
+CMD ["/root/build.sh"]
