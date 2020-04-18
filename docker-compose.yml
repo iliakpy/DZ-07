@@ -14,3 +14,7 @@ services:
       dockerfile: Dockerfile_run
     volumes:
       - art:/opt
+    ports:
+      - "8080:8080"
+    depends_on:
+      - box-build
