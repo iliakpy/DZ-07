@@ -1,14 +1,17 @@
-FROM ubuntu:16.04
+FROM alpine:latest
 
 EXPOSE 8080/tcp
 VOLUME ["/opt/"]
 
 ADD run.sh /root/run.sh
 
-RUN apt update && \
-  apt install -y default-jdk tomcat8 && \
+RUN apk update && \
+  apk add openjdk8-jre && \
+  mkdir /usr/local/tomcat && \
+  cd /usr/local/tomcat && \
+  wget http://mirror.linux-ia64.org/apache/tomcat/tomcat-8/v8.5.54/bin/apache-tomcat-8.5.54.tar.gz && \
+  tar xvzf apache-tomcat-8.5.54.tar.gz && \
+  rm apache-tomcat-8.5.54.tar.gz && \
   chmod a+x /root/run.sh
-
-ENV CATALINA_BASE /var/lib/tomcat8/
 
 CMD ["/root/run.sh"]
